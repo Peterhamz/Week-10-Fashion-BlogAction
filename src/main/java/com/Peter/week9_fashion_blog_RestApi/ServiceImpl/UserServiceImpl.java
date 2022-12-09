@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -38,6 +39,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public RegisterResponse register(UserDto userDTO) {
+        Optional<User> existingUser = userRepository.findUserByEmail(userDTO.getEmail());
+    if (existingUser.isPresent())
+        throw new NotFoundException("user already exist");
     User user = new User();
     user.setName(userDTO.getName());
     user.setEmail(userDTO.getEmail());
@@ -58,7 +62,9 @@ public class UserServiceImpl implements UserService {
             else {
                 loginResponse = new LoginResponse("wrong Password", LocalDateTime.now());
             }
-        }
+
+        } else {loginResponse = new LoginResponse("user not found", LocalDateTime.now());}
+
         return loginResponse;
     }
 
