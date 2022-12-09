@@ -1,0 +1,137 @@
+//package com.Peter.week9_fashion_blog_RestApi.ServiceImpl;
+//
+//import com.Peter.week9_fashion_blog_RestApi.Dto.LoginDto;
+//import com.Peter.week9_fashion_blog_RestApi.Dto.PostDto;
+//import com.Peter.week9_fashion_blog_RestApi.Dto.UserDto;
+//import com.Peter.week9_fashion_blog_RestApi.Model.Comment;
+//import com.Peter.week9_fashion_blog_RestApi.Model.Like;
+//import com.Peter.week9_fashion_blog_RestApi.Model.Post;
+//import com.Peter.week9_fashion_blog_RestApi.Model.User;
+//import com.Peter.week9_fashion_blog_RestApi.Repository.CommentRepository;
+//import com.Peter.week9_fashion_blog_RestApi.Repository.LikeRepository;
+//import com.Peter.week9_fashion_blog_RestApi.Repository.PostRepository;
+//import com.Peter.week9_fashion_blog_RestApi.Repository.UserRepository;
+//import com.Peter.week9_fashion_blog_RestApi.Response.CreatePostResponse;
+//import com.Peter.week9_fashion_blog_RestApi.Response.LoginResponse;
+//import com.Peter.week9_fashion_blog_RestApi.Response.RegisterResponse;
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+//import org.mockito.InjectMocks;
+//import org.mockito.Mock;
+//import org.springframework.boot.test.context.SpringBootTest;
+//
+//import java.time.LocalDateTime;
+//import java.util.ArrayList;
+//import java.util.List;
+//import java.util.Optional;
+//
+//import static java.time.Month.DECEMBER;
+//import static org.junit.jupiter.api.Assertions.*;
+//import static org.mockito.Mockito.when;
+//
+//@SpringBootTest
+//class UserServiceImplTest {
+//
+//    @Mock
+//    private UserRepository userRepository;
+//    @Mock
+//    private PostRepository postRepository;
+//
+//    @Mock
+//    private CommentRepository commentRepository;
+//
+//    @Mock
+//    private LikeRepository likeRepository;
+//
+//    @InjectMocks
+//    private UserServiceImpl userService;
+//
+//
+//    private User user;
+//    private Post post;
+//    private Comment comment;
+//    private Like like;
+//
+//
+//    List<User> userList = new ArrayList<>();
+//
+//    List<Post> postList = new ArrayList<>();
+//
+//    List<Comment> commentList = new ArrayList<>();
+//
+//    List<Like>     likeList = new ArrayList<>();
+//
+//    private LocalDateTime localDateTime;
+//
+//    @BeforeEach
+//    void setUp() {
+//        User user = new User(1,"Petr","petr@gmail.com","vadooo",localDateTime,localDateTime,postList,commentList,likeList);
+//        Post post = new Post(1,"Java","OOP based Language",localDateTime,localDateTime,user,commentList,likeList);
+//        Comment comment = new Comment(1,"God go help you",localDateTime,localDateTime,post,user);
+//        Like like = new Like(1,true,localDateTime,localDateTime,post,user);
+//        localDateTime = LocalDateTime.of(2022, DECEMBER,7,6,30,40,500);
+//    }
+//
+//    @Test
+//    void register() {
+////        Given
+//        UserDto userDto = new UserDto("Petr","petr@gmail.com","vadooo");
+//
+////        When
+//        when(userRepository.save(user)).thenReturn(user);
+//        RegisterResponse registerResponse = new RegisterResponse("success",localDateTime,user);
+//        var actual = userService.register(userDto);
+//        actual.setTimeStamp(localDateTime);
+//        actual.getUser().setCreatedAt(localDateTime);
+//        actual.getUser().setUpdatedAt(localDateTime);
+//        actual.getUser().setId(1);
+//        assertEquals(registerResponse,actual);
+//
+//
+//    }
+//
+//    @Test
+//    void loginSuccessful() {
+//        LoginDto loginDto = new LoginDto("petr@gmail.com", "vadooo");
+//        when(userRepository.findUserByEmail("petr@gmail.com")).thenReturn(Optional.ofNullable(user));
+//        LoginResponse loginResponse = new LoginResponse("success", localDateTime);
+//        var actual = userService.login(loginDto);
+//        actual.setTimeStamp(localDateTime);
+//        assertEquals(loginResponse, actual);
+//    }
+//
+//    @Test
+//    void createPost() {
+//        when(userRepository.findById(1)).thenReturn(Optional.ofNullable(user));
+//        PostDto postDto = new PostDto("Narrow", "new-book", 1);
+//        CreatePostResponse createPostResponse = new CreatePostResponse("book title", localDateTime, post);
+//        var actual = userService.createPost(postDto);
+//        actual.setTimeStamp(localDateTime);
+//        actual.getPost().setCreatedAt(localDateTime);
+//        actual.getPost().setUpdatedAt(localDateTime);
+//        actual.getPost().setId(1);
+//        assertEquals(createPostResponse, actual);
+//
+//    }
+//
+//
+//
+//    @Test
+//    void findUserById() {
+//        when(userRepository.findById(1)).thenReturn(Optional.ofNullable(user));
+//        assertEquals(user, userService.findUserById(1));
+//    }
+//
+//    @Test
+//    void findUserByEmail(){
+//        when(userRepository.findById(1)).thenReturn(Optional.ofNullable(user));
+//        assertEquals(user, userService.findUserByEmail("petr@gmail.com"));
+//    }
+//
+//
+//    @Test
+//    void findPostById() {
+//        when(postRepository.findById(1)).thenReturn(Optional.ofNullable(post));
+//        assertEquals(post, userService.findPostById(1));
+//    }
+//}
